@@ -10,10 +10,6 @@ export class Storage {
     return JSON.parse(localStorage.getItem(key) || '[]');
   }
 
-  clear(): void {
-    localStorage.clear();
-  }
-
   static getInstance() {
     if (!Storage.instance) {
       Storage.instance = new Storage();
