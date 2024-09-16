@@ -11,6 +11,11 @@
     "prettier": "prettier --write 'src/**/*.ts'",
     "lint": "eslint . --ext .ts"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm prettier"
+    }
+  },
   "prettier": {
     "semi": true,
     "singleQuote": true,
@@ -30,7 +35,10 @@
       "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint", "prettier"],
+    "plugins": [
+      "@typescript-eslint",
+      "prettier"
+    ],
     "rules": {
       "prettier/prettier": "error",
       "@typescript-eslint/no-unused-vars": "warn"
@@ -49,6 +57,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "gh-pages": "^6.1.1",
     "globals": "^15.9.0",
+    "husky": "^9.1.6",
     "prettier": "^3.3.3",
     "sass": "^1.78.0",
     "sass-loader": "^16.0.1",
