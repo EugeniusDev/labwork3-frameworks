@@ -124,7 +124,7 @@ class App {
         if (!user) throw new Error('Помилка');
         this.showNotification(
           'Книгу успішно позичено',
-          `\'${book.getFullName()}\' було позичено користувачем ${user.represent()}`
+          `'${book.getFullName()}' було позичено користувачем ${user.represent()}`
         );
       };
 
@@ -158,7 +158,7 @@ class App {
         if (!book) throw new Error('Помилка');
         this.showNotification(
           'Книгу повернено',
-          `\'${book.getFullName()}\' було успішно повернено.`
+          `'${book.getFullName()}' було успішно повернено.`
         );
       };
 

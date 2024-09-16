@@ -118,7 +118,7 @@ export class Pagination {
     if (!list) return;
     list.innerHTML = '';
     const items = this.items.getPaginated(this.currentPage, this.itemsPerPage);
-    for (let item of items) {
+    for (const item of items) {
       const li = document.createElement('li');
       li.className = 'list-group-item d-flex justify-content-between';
       const text = document.createTextNode(item.represent());
@@ -209,7 +209,7 @@ export class Services implements IPaginator<ILibraryEntity> {
       throw new Error('User already has 3 books');
     }
 
-    let book = this.library.find(bookId);
+    const book = this.library.find(bookId);
     console.log('book found');
     if (!book || book.borrowed) {
       throw new Error('Book not found or it was already taken by someone');
@@ -227,7 +227,7 @@ export class Services implements IPaginator<ILibraryEntity> {
       throw new Error('User not found');
     }
 
-    let book = this.library.find(bookId);
+    const book = this.library.find(bookId);
     if (!book) {
       throw new Error('Book not found or it was already taken by someone');
     }
@@ -262,7 +262,7 @@ export class Services implements IPaginator<ILibraryEntity> {
 
   private loadFromStorage() {
     const books = this.storageService.get(this.booksKey) ?? [];
-    for (let book of books) {
+    for (const book of books) {
       const newBook = new Book();
       newBook.id = book.id;
       newBook.author = book.author;
@@ -320,14 +320,14 @@ export class UserService implements IPaginator<IUser> {
   private loadFromStorage() {
     const users = this.storage.get(this.usersKey);
 
-    for (let user of users) {
+    for (const user of users) {
       const newUser = new User();
       newUser.email = user.email;
       newUser.id = user.id;
       newUser.username = user.username;
       const newBooks: IShelfPlaceable[] = [];
       const books = user.borrowedBooks;
-      for (let book of books) {
+      for (const book of books) {
         const newBook = new Book();
         newBook.id = book.id;
         newBook.author = book.author;
