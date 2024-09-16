@@ -261,7 +261,8 @@ export class Services implements IPaginator<ILibraryEntity> {
   }
 
   private loadFromStorage() {
-    const books = this.storageService.get(this.booksKey) ?? [];
+    const books =
+      this.storageService.get<IShelfPlaceable[]>(this.booksKey) ?? [];
     for (const book of books) {
       const newBook = new Book();
       newBook.id = book.id;
@@ -318,7 +319,7 @@ export class UserService implements IPaginator<IUser> {
   }
 
   private loadFromStorage() {
-    const users = this.storage.get(this.usersKey);
+    const users = this.storage.get<IUser[]>(this.usersKey);
 
     for (const user of users) {
       const newUser = new User();

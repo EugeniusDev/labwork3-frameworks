@@ -1,14 +1,12 @@
-import { ILibraryEntity } from './models';
-
 export class Storage {
   private static instance: Storage;
 
   private constructor() {}
-  save(key: string, data: Array<ILibraryEntity>) {
+  save<T>(key: string, data: T) {
     localStorage.setItem(key, JSON.stringify(data));
   }
 
-  get(key: string): Array<ILibraryEntity> {
+  get<T>(key: string): T {
     return JSON.parse(localStorage.getItem(key) || '[]');
   }
 
