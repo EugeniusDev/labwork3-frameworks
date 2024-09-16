@@ -1,272 +1,526 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="libs/bootstrap.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="libs/bootstrap.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <title>Система управління бібліотекою</title>
-</head>
-<body>
-<div class="bg-light m-5 pb-5">
-    <h1 class="text-center">Система управління бібліотекою</h1>
-    <div class="me-5 ms-5 bg-white shadow p-3 mb-5 bg-body-tertiary rounded">
+  </head>
+  <body>
+    <div class="bg-light m-5 pb-5">
+      <h1 class="text-center">Система управління бібліотекою</h1>
+      <div class="me-5 ms-5 bg-white shadow p-3 mb-5 bg-body-tertiary rounded">
         <h2>Додати книгу</h2>
         <form id="create-book-form" class="needs-validation" novalidate>
-            <div class="mb-3">
-                <input class="form-control" required type="text" name="bookName" id="bookName"
-                       placeholder="Назва книги">
-                <div class="valid-feedback"></div>
-                <div class="invalid-feedback">Це поле є обов'язковим</div>
+          <div class="mb-3">
+            <input
+              class="form-control"
+              required
+              type="text"
+              name="bookName"
+              id="bookName"
+              placeholder="Назва книги"
+            />
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback">Це поле є обов'язковим</div>
+          </div>
+          <div class="mb-3">
+            <input
+              class="form-control"
+              required
+              type="text"
+              name="author"
+              id="author"
+              placeholder="Автор"
+            />
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback">Це поле є обов'язковим</div>
+          </div>
+          <div class="mb-3">
+            <input
+              class="form-control"
+              pattern="^(0|[1-9][0-9]{0,3})$"
+              required
+              type="text"
+              name="releaseYear"
+              id="releaseYear"
+              placeholder="Рік видання"
+            />
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback">
+              Це поле є обов'язковим і має мати правильне значення року.
             </div>
-            <div class="mb-3">
-                <input class="form-control" required type="text" name="author" id="author" placeholder="Автор">
-                <div class="valid-feedback"></div>
-                <div class="invalid-feedback">Це поле є обов'язковим</div>
-            </div>
-            <div class="mb-3">
-                <input class="form-control" pattern="^(0|[1-9][0-9]{0,3})$" required type="text" name="releaseYear"
-                       id="releaseYear" placeholder="Рік видання">
-                <div class="valid-feedback"></div>
-                <div class="invalid-feedback">Це поле є обов'язковим і має мати правильне значення року.</div>
-            </div>
-            <button type="submit" class="btn btn-success">Додати книгу</button>
+          </div>
+          <button type="submit" class="btn btn-success">Додати книгу</button>
         </form>
-    </div>
-    <div class="me-5 ms-5 bg-white shadow p-3 mb-5 bg-body-tertiary rounded">
+      </div>
+      <div class="me-5 ms-5 bg-white shadow p-3 mb-5 bg-body-tertiary rounded">
         <h2>Додати Користувача</h2>
         <form id="create-user-form" class="needs-validation" novalidate>
-            <div class="mb-3">
-                <input class="form-control" required type="text" name="username" id="username" placeholder="Ім'я">
-                <div class="valid-feedback"></div>
-                <div class="invalid-feedback">Це поле є обов'язковим</div>
+          <div class="mb-3">
+            <input
+              class="form-control"
+              required
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Ім'я"
+            />
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback">Це поле є обов'язковим</div>
+          </div>
+          <div class="mb-3">
+            <input
+              class="form-control"
+              required
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
+            />
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback">
+              Це поле є обов'язковим і повинне мати валідне значення пошти.
             </div>
-            <div class="mb-3">
-                <input class="form-control" required type="email" name="email" id="email" placeholder="Email">
-                <div class="valid-feedback"></div>
-                <div class="invalid-feedback">Це поле є обов'язковим і повинне мати валідне значення пошти.</div>
-            </div>
-            <button type="submit" class="btn btn-success">Додати Користувача</button>
+          </div>
+          <button type="submit" class="btn btn-success">
+            Додати Користувача
+          </button>
         </form>
-    </div>
-    <div class="me-5 ms-5 bg-white shadow p-3 mb-5 bg-body-tertiary rounded">
+      </div>
+      <div class="me-5 ms-5 bg-white shadow p-3 mb-5 bg-body-tertiary rounded">
         <h2>Список книг</h2>
         <div class="d-flex gap-1">
-            <div>
-                <form action="" id="search-form" class="d-flex gap-1">
-                    <label for="search-book" class="form-label mt-auto mb-auto fs-4">Шукати за: </label>
-                    <select name="" class="form-select" id="search-book-option" required>
-                        <option selected value="name">Ім'ям</option>
-                        <option value="author">Автором</option>
-                    </select>
-                    <input type="text" class="form-control" id="search-book">
-                    <button type="submit" id="search-book-button" class="btn btn-primary">Шукати</button>
-                    <button type="reset" id="search-book-reset" class="btn btn-secondary">Скасувати пошук</button>
-                </form>
-            </div>
-            <div>
-                <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal"
-                        data-bs-target="#borrowBookModal">
-                    Позичити книгу
-                </button>
+          <div>
+            <form action="" id="search-form" class="d-flex gap-1">
+              <label for="search-book" class="form-label mt-auto mb-auto fs-4"
+                >Шукати за:
+              </label>
+              <select
+                name=""
+                class="form-select"
+                id="search-book-option"
+                required
+              >
+                <option selected value="name">Ім'ям</option>
+                <option value="author">Автором</option>
+              </select>
+              <input type="text" class="form-control" id="search-book" />
+              <button
+                type="submit"
+                id="search-book-button"
+                class="btn btn-primary"
+              >
+                Шукати
+              </button>
+              <button
+                type="reset"
+                id="search-book-reset"
+                class="btn btn-secondary"
+              >
+                Скасувати пошук
+              </button>
+            </form>
+          </div>
+          <div>
+            <button
+              type="button"
+              class="btn btn-success mb-3"
+              data-bs-toggle="modal"
+              data-bs-target="#borrowBookModal"
+            >
+              Позичити книгу
+            </button>
 
-                <div class="modal fade" id="borrowBookModal" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Введіть дані для позичення книги:</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрити">
-                                </button>
-                            </div>
-                            <form id="borrow-book-form" class="needs-validation" novalidate>
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="borrow-user-id" class="form-label">ID користувача:</label> <br>
-                                        <input type="number" id="borrow-user-id" class="form-control" required>
-                                        <div class="invalid-feedback"></div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="borrow-book-id" class="form-label">ID книги:</label> <br>
-                                        <input type="number" id="borrow-book-id" class="form-control" required>
-                                        <div class="invalid-feedback"></div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-                                </div>
-                            </form>
-                        </div>
+            <div
+              class="modal fade"
+              id="borrowBookModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">
+                      Введіть дані для позичення книги:
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Закрити"
+                    ></button>
+                  </div>
+                  <form
+                    id="borrow-book-form"
+                    class="needs-validation"
+                    novalidate
+                  >
+                    <div class="modal-body">
+                      <div class="mb-3">
+                        <label for="borrow-user-id" class="form-label"
+                          >ID користувача:</label
+                        >
+                        <br />
+                        <input
+                          type="number"
+                          id="borrow-user-id"
+                          class="form-control"
+                          required
+                        />
+                        <div class="invalid-feedback"></div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="borrow-book-id" class="form-label"
+                          >ID книги:</label
+                        >
+                        <br />
+                        <input
+                          type="number"
+                          id="borrow-book-id"
+                          class="form-control"
+                          required
+                        />
+                        <div class="invalid-feedback"></div>
+                      </div>
                     </div>
+                    <div class="modal-footer">
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        data-bs-dismiss="modal"
+                      >
+                        OK
+                      </button>
+                    </div>
+                  </form>
                 </div>
+              </div>
             </div>
-            <div>
-                <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal"
-                        data-bs-target="#returnBookModal">
-                    Повернути книгу
-                </button>
+          </div>
+          <div>
+            <button
+              type="button"
+              class="btn btn-success mb-3"
+              data-bs-toggle="modal"
+              data-bs-target="#returnBookModal"
+            >
+              Повернути книгу
+            </button>
 
-                <div class="modal fade" id="returnBookModal" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Повернути книгу</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрити">
-                                </button>
-                            </div>
-                            <form id="return-book-form" class="needs-validation" novalidate>
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="return-user-id" class="form-label">ID користувача:</label> <br>
-                                        <input type="number" id="return-user-id" class="form-control" required>
-                                        <div class="invalid-feedback"></div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="return-book-id" class="form-label">ID книги:</label> <br>
-                                        <input type="number" id="return-book-id" class="form-control" required>
-                                        <div class="invalid-feedback"></div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-                                </div>
-                            </form>
-                        </div>
+            <div
+              class="modal fade"
+              id="returnBookModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Повернути книгу
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Закрити"
+                    ></button>
+                  </div>
+                  <form
+                    id="return-book-form"
+                    class="needs-validation"
+                    novalidate
+                  >
+                    <div class="modal-body">
+                      <div class="mb-3">
+                        <label for="return-user-id" class="form-label"
+                          >ID користувача:</label
+                        >
+                        <br />
+                        <input
+                          type="number"
+                          id="return-user-id"
+                          class="form-control"
+                          required
+                        />
+                        <div class="invalid-feedback"></div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="return-book-id" class="form-label"
+                          >ID книги:</label
+                        >
+                        <br />
+                        <input
+                          type="number"
+                          id="return-book-id"
+                          class="form-control"
+                          required
+                        />
+                        <div class="invalid-feedback"></div>
+                      </div>
                     </div>
-                </div>
-            </div>
-            <div>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBookModal">
-                    Видалити книгу
-                </button>
-                <div class="modal fade" id="deleteBookModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="deleteBookModalLabel">Введіть ID книги до видалення:</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Закрити"></button>
-                            </div>
-                            <form id="delete-book-form" action="" class="needs-validation">
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="delete-book-id" class="form-label">ID книги:</label>
-                                        <input id="delete-book-id" type="number" class="form-control" required>
-                                        <div class="invalid-feedback"></div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити
-                                    </button>
-                                    <button type="submit" class="btn btn-danger">Видалити книгу</button>
-                                </div>
-                            </form>
-
-                        </div>
+                    <div class="modal-footer">
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        data-bs-dismiss="modal"
+                      >
+                        OK
+                      </button>
                     </div>
+                  </form>
                 </div>
+              </div>
             </div>
+          </div>
+          <div>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-toggle="modal"
+              data-bs-target="#deleteBookModal"
+            >
+              Видалити книгу
+            </button>
+            <div
+              class="modal fade"
+              id="deleteBookModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteBookModalLabel">
+                      Введіть ID книги до видалення:
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Закрити"
+                    ></button>
+                  </div>
+                  <form
+                    id="delete-book-form"
+                    action=""
+                    class="needs-validation"
+                  >
+                    <div class="modal-body">
+                      <div class="mb-3">
+                        <label for="delete-book-id" class="form-label"
+                          >ID книги:</label
+                        >
+                        <input
+                          id="delete-book-id"
+                          type="number"
+                          class="form-control"
+                          required
+                        />
+                        <div class="invalid-feedback"></div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Закрити
+                      </button>
+                      <button type="submit" class="btn btn-danger">
+                        Видалити книгу
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <ul id="books-list" class="list-group mb-3"></ul>
         <nav aria-label="Page navigation example">
-            <ul id="books-navigation" class="pagination">
-                <li class="page-item"><a class="page-link" href="#" id="books-navigation-prev-page">Попередня сторінка</a></li>
-                <li id="books-navigation-next-page" class="page-item"><a class="page-link" href="#">Наступна сторінка</a></li>
-            </ul>
+          <ul id="books-navigation" class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" id="books-navigation-prev-page"
+                >Попередня сторінка</a
+              >
+            </li>
+            <li id="books-navigation-next-page" class="page-item">
+              <a class="page-link" href="#">Наступна сторінка</a>
+            </li>
+          </ul>
         </nav>
-    </div>
-    <div class="me-5 ms-5 bg-white shadow p-3 mb-5 bg-body-tertiary rounded">
+      </div>
+      <div class="me-5 ms-5 bg-white shadow p-3 mb-5 bg-body-tertiary rounded">
         <h2>Список користувачів</h2>
         <div class="d-flex gap-1 mb-3">
-            <div>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal">
-                    Видалити користувача
-                </button>
-                <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="deleteUserModalLabel">Введіть ID користувача до видалення:</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Закрити"></button>
-                            </div>
-                            <form id="delete-user-form" action="" class="needs-validation">
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="delete-user-id" class="form-label">ID користувача:</label>
-                                        <input id="delete-user-id" type="number" class="form-control" required>
-                                        <div class="invalid-feedback"></div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити
-                                    </button>
-                                    <button type="submit" class="btn btn-danger">Видалити користувача</button>
-                                </div>
-                            </form>
-                        </div>
+          <div>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-toggle="modal"
+              data-bs-target="#deleteUserModal"
+            >
+              Видалити користувача
+            </button>
+            <div
+              class="modal fade"
+              id="deleteUserModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteUserModalLabel">
+                      Введіть ID користувача до видалення:
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Закрити"
+                    ></button>
+                  </div>
+                  <form
+                    id="delete-user-form"
+                    action=""
+                    class="needs-validation"
+                  >
+                    <div class="modal-body">
+                      <div class="mb-3">
+                        <label for="delete-user-id" class="form-label"
+                          >ID користувача:</label
+                        >
+                        <input
+                          id="delete-user-id"
+                          type="number"
+                          class="form-control"
+                          required
+                        />
+                        <div class="invalid-feedback"></div>
+                      </div>
                     </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Закрити
+                      </button>
+                      <button type="submit" class="btn btn-danger">
+                        Видалити користувача
+                      </button>
+                    </div>
+                  </form>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
 
         <ul id="users-list" class="list-group mb-3"></ul>
         <nav aria-label="Page navigation example">
-            <ul id="users-navigation" class="pagination">
-                <li class="page-item"><a class="page-link" href="#" id="users-navigation-prev-page">Попередня сторінка</a></li>
-                <li id="users-navigation-next-page" class="page-item"><a class="page-link" href="#">Наступна сторінка</a></li>
-            </ul>
+          <ul id="users-navigation" class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" id="users-navigation-prev-page"
+                >Попередня сторінка</a
+              >
+            </li>
+            <li id="users-navigation-next-page" class="page-item">
+              <a class="page-link" href="#">Наступна сторінка</a>
+            </li>
+          </ul>
         </nav>
+      </div>
     </div>
-</div>
 
-<button id="message-modal-button" type="button" class="d-none" data-bs-toggle="modal" data-bs-target="#messageModal">
-    Launch demo modal
-</button>
+    <button
+      id="message-modal-button"
+      type="button"
+      class="d-none"
+      data-bs-toggle="modal"
+      data-bs-target="#messageModal"
+    >
+      Launch demo modal
+    </button>
 
-<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div
+      class="modal fade"
+      id="messageModal"
+      tabindex="-1"
+      aria-labelledby="messageModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="messageModalLabel"></h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрити"></button>
-            </div>
-            <div id="message-modal-body" class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-            </div>
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="messageModalLabel"></h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Закрити"
+            ></button>
+          </div>
+          <div id="message-modal-body" class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              OK
+            </button>
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
-
-<script>
-    (function () {
+    <script>
+      (function () {
         'use strict';
-        window.addEventListener('load', function () {
+        window.addEventListener(
+          'load',
+          function () {
             let forms = document.getElementsByClassName('needs-validation');
-            let validation = Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-        }, false);
-    })();
-</script>
-<script src="dist/bundle.js"></script>
-</body>
+            let validation = Array.prototype.filter.call(
+              forms,
+              function (form) {
+                form.addEventListener(
+                  'submit',
+                  function (event) {
+                    if (form.checkValidity() === false) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                  },
+                  false
+                );
+              }
+            );
+          },
+          false
+        );
+      })();
+    </script>
+    <script src="dist/bundle.js"></script>
+  </body>
 </html>
