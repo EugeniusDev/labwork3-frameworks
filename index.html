@@ -511,6 +511,8 @@
                       event.stopPropagation();
                     }
                     form.classList.add('was-validated');
+                    form.classList.remove('was-validated');
+                    form.reset();
                   },
                   false
                 );
